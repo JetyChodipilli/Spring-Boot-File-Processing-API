@@ -17,21 +17,22 @@ The application uses Spring Boot's REST controller to handle file uploads and de
 * Maven
 * Spring Web (for REST APIs and file upload handling)
 
-Prerequisites
+## Prerequisites
 
-Java 17 or higher
-Maven 3.6+
-A running Spring Boot application environment
-(Optional) A tool like Postman or cURL for testing API endpoints
+* Java 17 or higher
+* Maven 3.6+
+* A running Spring Boot application environment
+* (Optional) A tool like Postman or cURL for testing API endpoints
 
-Project Structure
-src/main/java/com/ccp/
+## Project Structure
+''' src/main/java/com/ccp/
 ├── controller/
 │   └── FileProcessingController.java  # REST controller for file upload endpoints
 ├── service/
 │   └── FileProcessingService.java     # Service interface for file processing logic
 src/main/resources/
 └── application.properties             # Application configuration
+'''
 
 Setup Instructions
 
