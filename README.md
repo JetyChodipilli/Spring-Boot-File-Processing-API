@@ -1,150 +1,200 @@
-# Spring Boot File Processing API
-##Overview
-This is a Java Spring Boot application that provides REST APIs for processing uploaded files. It includes endpoints to:
-* Upload and process Excel or CSV files, with an optional startRow parameter to skip initial rows.
-* Convert XML files to JSON and save the output to a specified file path.
-The application uses Spring Boot's REST controller to handle file uploads and delegates processing to a FileProcessingService.
-## Features
-* Excel/CSV Processing: Accepts Excel or CSV files via a POST request, processes them starting from a specified row, and returns the processed output as a string.
-* XML-to-JSON Conversion: Accepts XML files, converts them to JSON, and saves the output to a specified file path.
-* Error handling for invalid files or processing failures with meaningful error messages.
-* Built with Spring Boot for easy setup and scalability.
+# 🌟 Spring Boot File Processing API
 
-## Technologies Used
+![Java](https://img.shields.io/badge/Java-17-blue.svg)
+![Spring Boot](https://img.shields.io/badge/SpringBoot-3.x-green.svg)
+![License](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Build](https://img.shields.io/badge/Build-Maven-success.svg)
 
-* Java 17
-* Spring Boot 3.x
-* Maven
-* Spring Web (for REST APIs and file upload handling)
+> A RESTful API built with Spring Boot to process Excel/CSV and XML files with robust error handling and clean architecture.
 
-## Prerequisites
+---
 
-* Java 17 or higher
-* Maven 3.6+
-* A running Spring Boot application environment
-* (Optional) A tool like Postman or cURL for testing API endpoints
+## 📖 Overview
 
-## Project Structure
-``` src/main/java/com/ccp/
+This Java Spring Boot application provides REST APIs for:
+
+- 📄 Uploading and processing Excel or CSV files, with an optional `startRow` parameter to skip initial rows.
+- 🔁 Converting XML files to JSON and saving the output to a specified file path.
+
+The application uses a REST controller to handle file uploads and delegates processing to a service layer.
+
+---
+
+## 🚀 Features
+
+- ✅ **Excel/CSV Processing**: Upload via POST, process from a specified row, return output as a string.
+- 🔄 **XML-to-JSON Conversion**: Upload XML, convert to JSON, save to disk.
+- 🛡️ **Error Handling**: Meaningful messages for invalid files or failures.
+- ⚙️ **Spring Boot Powered**: Easy setup, scalable architecture.
+
+---
+
+## 🧰 Technologies Used
+
+- Java 17  
+- Spring Boot 3.x  
+- Maven  
+- Spring Web (REST APIs & file upload)
+
+---
+
+## 📋 Prerequisites
+
+- Java 17+  
+- Maven 3.6+  
+- Spring Boot runtime environment  
+- *(Optional)* Postman or cURL for testing
+
+---
+
+## 📁 Project Structure
+
+```text
+src/main/java/com/ccp/
 ├── controller/
-│   └── FileProcessingController.java  # REST controller for file upload endpoints
+│   └── FileProcessingController.java    # REST controller
 ├── service/
-│   └── FileProcessingService.java     # Service interface for file processing logic
+│   └── FileProcessingService.java       # Business logic interface
+
 src/main/resources/
-└── application.properties             # Application configuration
+└── application.properties               # Config file
 ```
 
-## Setup Instructions
+---
 
-Clone the Repository:
+## ⚙️ Setup Instructions
+
+### 📥 Clone the Repository
+
 ```bash
- git clone [repo Url](https://github.com/JetyChodipilli/Spring-Boot-File-Processing-API)
+git clone https://github.com/JetyChodipilli/Spring-Boot-File-Processing-API
 cd spring-boot-file-processing
+```
 
+### 🔧 Configure Application
 
-Configure Application:
+Edit `src/main/resources/application.properties` if needed:
 
-Ensure application.properties in src/main/resources is configured if needed (e.g., server port):server.port=8080
+```properties
+server.port=8080
+```
 
+### 🛠️ Build the Project
 
-
-
-Build the Project:
+```bash
 mvn clean install
+```
 
+### ▶️ Run the Application
 
-Run the Application:
+```bash
 mvn spring-boot:run
+```
 
+---
 
+## 📡 API Endpoints
 
-API Endpoints
-1. Upload and Process Excel/CSV File
+### 1️⃣ Upload and Process Excel/CSV
 
-Endpoint: POST /api/upload/excel-csv
-Description: Uploads an Excel or CSV file and processes it starting from the specified row (default: 0).
-Parameters:
-file: Multipart file (Excel or CSV) [Required]
-startRow: Integer, row to start processing from (default: 0) [Optional]
+- **Endpoint**: `POST /api/upload/excel-csv`  
+- **Params**:
+  - `file` (Multipart) — Required  
+  - `startRow` (Integer) — Optional (default: 0)
 
+#### 🧪 Example (cURL)
 
-Request Example (using cURL):curl -X POST "http://localhost:8080/api/upload/excel-csv?startRow=2" \
+```bash
+curl -X POST "http://localhost:8080/api/upload/excel-csv?startRow=2" \
      -F "file=@/path/to/sample.csv"
+```
 
+#### ✅ Response
 
-Response:
-Success: 200 OK with processed output as a string
-Error: 500 Internal Server Error with error message
+- `200 OK`: `"Processed data: [output]"`
+- `500 Error`: `"Error processing file: Invalid format"`
 
+---
 
-Sample Success Response:"Processed data: [output from FileProcessingService]"
+### 2️⃣ Convert XML to JSON
 
+- **Endpoint**: `POST /api/upload/xml`  
+- **Params**:
+  - `file` (Multipart) — Required  
+  - `outputPath` (String) — Required
 
-Sample Error Response:"Error processing file: Invalid file format"
+#### 🧪 Example (cURL)
 
-
-
-2. Convert XML to JSON
-
-Endpoint: POST /api/upload/xml
-Description: Uploads an XML file, converts it to JSON, and saves the output to the specified path.
-Parameters:
-file: Multipart file (XML) [Required]
-outputPath: String, file path to save the JSON output (e.g., /tmp/output.json) [Required]
-
-
-Request Example (using cURL):curl -X POST "http://localhost:8080/api/upload/xml?outputPath=/tmp/output.json" \
+```bash
+curl -X POST "http://localhost:8080/api/upload/xml?outputPath=/tmp/output.json" \
      -F "file=@/path/to/sample.xml"
+```
 
+#### ✅ Response
 
-Response:
-Success: 200 OK with confirmation of JSON file generation
-Error: 500 Internal Server Error with error message
+- `200 OK`: `"JSON file generated at: /tmp/output.json"`
+- `500 Error`: `"Error processing XML file: Invalid format"`
 
+---
 
-Sample Success Response:"JSON file generated at: /tmp/output.json"
+## 🧪 Usage Guide
 
+- Start the app: `mvn spring-boot:run`
+- Use Postman or cURL to test endpoints
+- For Excel/CSV: upload file with optional `startRow`
+- For XML: provide valid file and writable `outputPath`
+- Check responses for output or errors
+- Verify JSON file at specified path
 
-Sample Error Response:"Error processing XML file: Invalid XML format"
+---
 
+## 📂 Sample Files
 
+### 📄 CSV Example (`sample.csv`)
 
-Usage
-
-Start the Spring Boot application (mvn spring-boot:run).
-Use a tool like Postman or cURL to test the endpoints:
-For Excel/CSV, upload a file with the startRow parameter if needed.
-For XML, provide a valid XML file and a writable output path for the JSON.
-
-
-Check the response for processed output or error messages.
-For XML-to-JSON, verify the generated JSON file at the specified outputPath.
-
-Sample Files
-
-Excel/CSV Example (sample.csv):id,name,email
+```csv
+id,name,email
 1,John Doe,john.doe@example.com
 2,Jane Smith,jane.smith@example.com
+```
 
+### 📄 XML Example (`sample.xml`)
 
-XML Example (sample.xml):<user>
+```xml
+<user>
     <id>1</id>
     <name>John Doe</name>
     <email>john.doe@example.com</email>
 </user>
+```
 
+---
 
+## 📝 Notes
 
-Notes
+- Ensure `FileProcessingService` is implemented and injected correctly.
+- Server must have write access to `outputPath`.
+- Add validation for file formats (`.csv`, `.xlsx`, `.xml`) to avoid errors.
 
-The FileProcessingService is assumed to contain the logic for processing Excel/CSV files and converting XML to JSON. Ensure it is implemented and injected correctly.
-The application assumes the server has write permissions for the outputPath specified in the XML-to-JSON endpoint.
-Add validation in FileProcessingService to check file formats (e.g., .csv, .xlsx, .xml) to avoid errors.
+---
 
-Troubleshooting
+## 🛠️ Troubleshooting
 
-File Upload Fails: Ensure the file is valid and matches the expected format (CSV/Excel for /excel-csv, XML for /xml).
-Permission Denied: Verify the server has write access to the outputPath for XML-to-JSON conversion.
-Service Errors: Check console logs for exceptions thrown by FileProcessingService.
-Port Conflict: Update server.port in application.properties if 8080 is in use.
+| Issue                  | Solution                                                                 |
+|------------------------|--------------------------------------------------------------------------|
+| File Upload Fails      | Check file format and endpoint match                                     |
+| Permission Denied      | Ensure server can write to `outputPath`                                  |
+| Service Errors         | Check logs for exceptions from `FileProcessingService`                   |
+| Port Conflict          | Change `server.port` in `application.properties`                         |
 
+---
+
+## 📜 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome! For major changes, please open an issue first to discuss what you’d like to change.
