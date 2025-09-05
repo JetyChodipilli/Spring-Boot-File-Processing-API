@@ -34,10 +34,11 @@ src/main/resources/
 └── application.properties             # Application configuration
 ```
 
-Setup Instructions
+## Setup Instructions
 
 Clone the Repository:
-git clone <repository-url>
+```bash
+ git clone [repo Url](https://github.com/JetyChodipilli/Spring-Boot-File-Processing-API)
 cd spring-boot-file-processing
 
 
