@@ -1,24 +1,21 @@
-Spring Boot File Processing API
-Overview
+# Spring Boot File Processing API
+##Overview
 This is a Java Spring Boot application that provides REST APIs for processing uploaded files. It includes endpoints to:
-
-Upload and process Excel or CSV files, with an optional startRow parameter to skip initial rows.
-Convert XML files to JSON and save the output to a specified file path.
-
+* Upload and process Excel or CSV files, with an optional startRow parameter to skip initial rows.
+* Convert XML files to JSON and save the output to a specified file path.
 The application uses Spring Boot's REST controller to handle file uploads and delegates processing to a FileProcessingService.
-Features
+## Features
+* Excel/CSV Processing: Accepts Excel or CSV files via a POST request, processes them starting from a specified row, and returns the processed output as a string.
+* XML-to-JSON Conversion: Accepts XML files, converts them to JSON, and saves the output to a specified file path.
+* Error handling for invalid files or processing failures with meaningful error messages.
+* Built with Spring Boot for easy setup and scalability.
 
-Excel/CSV Processing: Accepts Excel or CSV files via a POST request, processes them starting from a specified row, and returns the processed output as a string.
-XML-to-JSON Conversion: Accepts XML files, converts them to JSON, and saves the output to a specified file path.
-Error handling for invalid files or processing failures with meaningful error messages.
-Built with Spring Boot for easy setup and scalability.
+## Technologies Used
 
-Technologies Used
-
-Java 17
-Spring Boot 3.x
-Maven
-Spring Web (for REST APIs and file upload handling)
+* Java 17
+* Spring Boot 3.x
+* Maven
+* Spring Web (for REST APIs and file upload handling)
 
 Prerequisites
 
