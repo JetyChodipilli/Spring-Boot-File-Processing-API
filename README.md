@@ -25,14 +25,14 @@ The application uses Spring Boot's REST controller to handle file uploads and de
 * (Optional) A tool like Postman or cURL for testing API endpoints
 
 ## Project Structure
-''' src/main/java/com/ccp/
+``` src/main/java/com/ccp/
 ├── controller/
 │   └── FileProcessingController.java  # REST controller for file upload endpoints
 ├── service/
 │   └── FileProcessingService.java     # Service interface for file processing logic
 src/main/resources/
 └── application.properties             # Application configuration
-'''
+```
 
 Setup Instructions
 
